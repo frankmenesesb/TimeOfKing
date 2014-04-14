@@ -48,7 +48,7 @@ public class GameLoopThread extends Thread {
                            if (sleepTime > 0)
                                   sleep(sleepTime);
                            else
-                                  sleep(50);
+                                  sleep(60);
                     } catch (Exception e) {}
              }
        }
