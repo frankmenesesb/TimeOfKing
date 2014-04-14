@@ -137,6 +137,7 @@ public class GameView extends SurfaceView {
            
            if(caminando){
                contador++;
+               
            }
            
            if (contador==1){
@@ -165,6 +166,7 @@ public class GameView extends SurfaceView {
         
         if (contadorArriba==2){
             contadorArriba=0;
+            
         }
            
            
@@ -235,8 +237,14 @@ public class GameView extends SurfaceView {
 }
 
 private void processMovement(float x1, float y1, float x2, float y2) {
-    caminando=false;
+    caminando=false;    
     int contador=0;
+    caminandoArriba = false;
+    
+    if(analogo.getWidth() == 0 && analogo.getHeight() == 0){
+        
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+    }else{
     if((x2>getWidth() - analogo.getWidth() && x2<getWidth()) && (y2>getHeight()- analogo.getHeight()) && y2<getHeight()){
     ///
     if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
@@ -279,6 +287,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //fire();
     }
     }
+}
     //
 }
     
