@@ -26,6 +26,8 @@ public final class R {
         public static final int ic_launcher=0x7f02000c;
         public static final int inicio=0x7f02000d;
         public static final int tierra=0x7f02000e;
+        public static final int up_left=0x7f02000f;
+        public static final int up_right=0x7f020010;
     }
     public static final class layout {
         public static final int main=0x7f030000;

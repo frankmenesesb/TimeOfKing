@@ -42,12 +42,14 @@ public class GameView extends SurfaceView {
        private int ySpeed = 1;
        private long lastClick;
        private int contador=0;
+       private int contadorArriba=0;
        private int xBoton=10;
        private int yBoton=10;
        private int xFondo=-20;
        private int yFondo=-20;
        private Bitmap arbolito;
        boolean caminando;
+       boolean caminandoArriba;
       
        public GameView(Context context) {
              super(context);
@@ -140,14 +142,29 @@ public class GameView extends SurfaceView {
            if (contador==1){
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_left);
         }
+           
         if (contador==2){
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_right);
         }
         
-        
-        
         if (contador==2){
             contador=0;
+        }
+        //caminando arriba
+        
+        if(caminandoArriba){
+               contadorArriba++;
+           }
+           
+           if (contadorArriba==1){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.up_left);
+        }
+        if (contadorArriba==2){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.up_right);
+        }
+        
+        if (contadorArriba==2){
+            contadorArriba=0;
         }
            
            
@@ -161,7 +178,12 @@ public class GameView extends SurfaceView {
              canvas.drawBitmap(fondo, xFondo , yFondo, null);
              canvas.drawBitmap(arbolito, 20 , 20, null);
              canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
+             
+             
+             
              canvas.drawBitmap(bmp, x , y, null);
+             
+             
              canvas.drawBitmap(botonA, (getWidth()-getWidth()+100) - botonA.getWidth() , getHeight()- botonA.getHeight(), null);
              canvas.drawBitmap(botonB, botonB.getWidth()+10 , getHeight()- botonB.getHeight(), null);
              
@@ -240,25 +262,14 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //Log.i("touch", "down");
         // move down
         //setSpriteState(4);
-//        if (contador==0){
-//        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_left);
-//        }
-//        if (contador==1){
-//        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_right);
-//        }
-//        
-//        contador++;
-//        
-//        if (contador==1){
-//            contador=0;
-//        }
+
         caminando=true;
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_down);
         ySpeed=+10;
         //yFondo=-5;
     } else if (y2 < y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "up");
-        
+        caminandoArriba=true;//
         // move up
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_up);
         ySpeed=-10;
@@ -300,8 +311,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
 //        ySpeed=+5;
     } else if (y2 < y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "up");
-        
-//        // move up
+                // move up
 //        analogo=BitmapFactory.decodeResource(getResources(), R.drawable.analogo_up_1);
 //        ySpeed=-5;
         //setSpriteState(3);

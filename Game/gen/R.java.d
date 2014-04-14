@@ -14,6 +14,8 @@ D:\timeOfKing\TimeOfKing\Game\res\drawable-hdpi\down_right.png \
 D:\timeOfKing\TimeOfKing\Game\res\drawable-hdpi\ic_launcher.png \
 D:\timeOfKing\TimeOfKing\Game\res\drawable-hdpi\inicio.png \
 D:\timeOfKing\TimeOfKing\Game\res\drawable-hdpi\tierra.png \
+D:\timeOfKing\TimeOfKing\Game\res\drawable-hdpi\up_left.png \
+D:\timeOfKing\TimeOfKing\Game\res\drawable-hdpi\up_right.png \
 D:\timeOfKing\TimeOfKing\Game\res\drawable-ldpi\arbolillo.png \
 D:\timeOfKing\TimeOfKing\Game\res\drawable-ldpi\ic_launcher.png \
 D:\timeOfKing\TimeOfKing\Game\res\drawable-ldpi\tierra.png \
@@ -40,6 +42,8 @@ D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-hdpi\down_right.png \
 D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-hdpi\ic_launcher.png \
 D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-hdpi\inicio.png \
 D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-hdpi\tierra.png \
+D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-hdpi\up_left.png \
+D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-hdpi\up_right.png \
 D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-ldpi\arbolillo.png \
 D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-ldpi\ic_launcher.png \
 D:\timeOfKing\TimeOfKing\Game\bin\res\drawable-ldpi\tierra.png \
