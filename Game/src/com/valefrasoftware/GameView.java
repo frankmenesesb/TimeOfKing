@@ -95,7 +95,7 @@ public class GameView extends SurfaceView {
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
              botonB=BitmapFactory.decodeResource(getResources(), R.drawable.boton_b);
-             fondo = BitmapFactory.decodeResource(getResources(), R.drawable.basefondo);
+             fondo = BitmapFactory.decodeResource(getResources(), R.drawable.tierra);
              arbolito = BitmapFactory.decodeResource(getResources(), R.drawable.arbolillo);
              
               
@@ -157,7 +157,7 @@ public class GameView extends SurfaceView {
              y=y+ySpeed;
              x = x + xSpeed;
              
-             canvas.drawColor(Color.BLACK);
+             canvas.drawColor(Color.GREEN);
              canvas.drawBitmap(fondo, xFondo , yFondo, null);
              canvas.drawBitmap(arbolito, 20 , 20, null);
              canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
@@ -170,7 +170,7 @@ public class GameView extends SurfaceView {
              //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
-//             if(intro>6){
+ //           if(intro>6){
 //             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);    
 //             }
              
@@ -283,7 +283,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
 //            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
 //            analogo=BitmapFactory.decodeResource(getResources(), R.drawable.analogo_left_1);
         botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a_2);
-        bmp=BitmapFactory.decodeResource(getResources(), R.drawable.pu_2);
+        
         //bmp.setPixel(70, 80, contador);    
     } else if (x2 > x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
 //        //Log.i("touch", "right");
