@@ -55,6 +55,7 @@ public class GameView extends SurfaceView {
        boolean caminandoArriba;
        boolean rigth;
        boolean left;
+       boolean stop;
        Printer pin;
       
        public GameView(Context context) {
@@ -143,75 +144,78 @@ public class GameView extends SurfaceView {
 //              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_6);   
 //             }
            
-           if(caminando){
-               contador++;
-               
-           }
+           //caminando abajo
            
-           if (contador==1){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_left);
-        }
            
-        if (contador==2){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_right);
-        }
+            //           if(intro>6){
+//             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);    
+//             }
+             
+             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+             // el if para la imagen inicial
         
-        if (contador==2){
-            contador=0;
+      if(!stop){
+           if(caminando){
+            
+            contador++;
+            
+            if (contador==1){
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_left);
+            }
+
+            if (contador==2){
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.down_right);
+                contador=0;
+            }
+               
         }
+           
+            
+        
         //caminando arriba
         
         if(caminandoArriba){
-               contadorArriba++;
-           }
-           
-           if (contadorArriba==1){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.up_left);
-        }
-        if (contadorArriba==2){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.up_right);
-        }
-        
-        if (contadorArriba==2){
-            contadorArriba=0;
             
-        }
+            contadorArriba++;
+            
+            if (contadorArriba==1){
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.up_left);
+            }
+            if (contadorArriba==2){
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.up_right);
+                contadorArriba=0;
+            }
+         }
+           
         
         
+        //caminando derecha
         if(rigth){
                contadorRigth++;
-           }
-           
-           if (contadorRigth==1){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left);
-        }
-        if (contadorRigth==2){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left_2);
-        }
-        
-        if (contadorRigth==2){
+            if (contadorRigth==1){
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left);
+            }
+            if (contadorRigth==2){
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left_2);
             contadorRigth=0;
-            
+            }
         }
+           
         
+        
+        
+        //caminando izquierda
         if(left){
-               contadorLeft++;
+            contadorLeft++;
+            if (contadorLeft==1){
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_rigth);
+            }
+            if (contadorLeft==2){
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_right_2);
+            contadorLeft=0;
+            }
            }
            
-           if (contadorLeft==1){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_rigth);
-        }
-        if (contadorLeft==2){
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_right_2);
-        }
-        
-        if (contadorLeft==2){
-            contadorLeft=0;
-            
-        }
-           
-           
-             
              intro++;
            
              y=y+ySpeed;
@@ -235,12 +239,9 @@ public class GameView extends SurfaceView {
              //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
- //           if(intro>6){
-//             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);    
-//             }
+
              
-             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
-             // el if para la imagen inicial
+      }
              
              
              
@@ -281,22 +282,29 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     caminando=false;
     rigth=false;
     left=false;
+    stop=false;
     int contador=0;
     caminandoArriba = false;
     
-//    if(analogo.getWidth() == 0 && analogo.getHeight() == 0){
-//        
-//        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
-//    }else{
+   // if(analogo.getWidth()/2 == x2 && analogo.getHeight()/2 == y2 && analogo.getWidth()/2 == x1 && analogo.getHeight()/2 == y1){
+        
+     //  bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+      //  caminandoArriba=false;
+       // caminando=false;
+       // rigth=false;
+     //   left=false;
+    //}else{
     if((x2>getWidth() - analogo.getWidth() && x2<getWidth()) && (y2>getHeight()- analogo.getHeight()) && y2<getHeight()){
     ///
-    if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
+     if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
         //Log.i("touch", "left");
         // move Left
         //setSpriteState(1);
         //x =0;
             //xFondo=+15;
-            
+            caminandoArriba=false;
+            caminando=false;
+            rigth=false;
             left=true;
             xSpeed = -10;  
             //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
@@ -306,7 +314,11 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     } else if (x2 > x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
         //Log.i("touch", "right");
         // move right
+        caminandoArriba=false;
+        caminando=false;
         rigth=true;
+        left=false;
+        
         xSpeed = 10;
         //xFondo=-15;
         //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c2);
@@ -316,25 +328,38 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //Log.i("touch", "down");
         // move down
         //setSpriteState(4);
-
+        caminandoArriba=false;
         caminando=true;
+        rigth=false;
+        left=false;
+        
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_down);
         ySpeed=+10;
         //yFondo=-5;
     } else if (y2 < y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "up");
         caminandoArriba=true;//
+        caminando=false;
+        rigth=false;
+        left=false;
         // move up
         analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_up);
         ySpeed=-10;
         //yFondo=+5;
         //setSpriteState(3);
-    } else if (x1==x2 && y1==y2){
+    }else if (x1==x2 && y1==y2){
         //fire();
-    }else{
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+   }else{
+        caminandoArriba=false;
+        caminando=false;
+        rigth=false;
+        left=false;
+        stop = true;
+        //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+        xSpeed = 0; 
+   // }
     }
-    //}
+  // }
 }
     //
 }
