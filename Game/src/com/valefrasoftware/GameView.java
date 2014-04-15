@@ -43,6 +43,8 @@ public class GameView extends SurfaceView {
        private long lastClick;
        private int contador=0;
        private int contadorArriba=0;
+       private int contadorLeft=0;
+       private int contadorRigth=0;
        private int xBoton=10;
        private int yBoton=10;
        private int xFondo=-20;
@@ -50,6 +52,8 @@ public class GameView extends SurfaceView {
        private Bitmap arbolito;
        boolean caminando;
        boolean caminandoArriba;
+       boolean rigth;
+       boolean left;
       
        public GameView(Context context) {
              super(context);
@@ -109,6 +113,7 @@ public class GameView extends SurfaceView {
        @Override
        protected void onDraw(Canvas canvas) {
            System.out.println(System.getenv());
+           int movimiento;
 //             if (x == getWidth() - bmp.getWidth()) {
 //                    xSpeed = -1;
 //             }
@@ -168,6 +173,39 @@ public class GameView extends SurfaceView {
             contadorArriba=0;
             
         }
+        
+        
+        if(rigth){
+               contadorRigth++;
+           }
+           
+           if (contadorRigth==1){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left);
+        }
+        if (contadorRigth==2){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left_2);
+        }
+        
+        if (contadorRigth==2){
+            contadorRigth=0;
+            
+        }
+        
+        if(left){
+               contadorLeft++;
+           }
+           
+           if (contadorLeft==1){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_rigth);
+        }
+        if (contadorLeft==2){
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_right_2);
+        }
+        
+        if (contadorLeft==2){
+            contadorLeft=0;
+            
+        }
            
            
              
@@ -175,10 +213,10 @@ public class GameView extends SurfaceView {
            
              y=y+ySpeed;
              x = x + xSpeed;
-             
+             movimiento=xFondo-x;
              canvas.drawColor(Color.GREEN);
-             canvas.drawBitmap(fondo, xFondo , yFondo, null);
-             canvas.drawBitmap(arbolito, 20 , 20, null);
+             canvas.drawBitmap(fondo, movimiento , yFondo, null);
+             canvas.drawBitmap(arbolito, movimiento+40 , 20, null);
              canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
              
              
@@ -237,14 +275,16 @@ public class GameView extends SurfaceView {
 }
 
 private void processMovement(float x1, float y1, float x2, float y2) {
-    caminando=false;    
+    caminando=false;
+    rigth=false;
+    left=false;
     int contador=0;
     caminandoArriba = false;
     
-    if(analogo.getWidth() == 0 && analogo.getHeight() == 0){
-        
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
-    }else{
+//    if(analogo.getWidth() == 0 && analogo.getHeight() == 0){
+//        
+//        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+//    }else{
     if((x2>getWidth() - analogo.getWidth() && x2<getWidth()) && (y2>getHeight()- analogo.getHeight()) && y2<getHeight()){
     ///
     if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
@@ -253,6 +293,8 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //setSpriteState(1);
         //x =0;
             //xFondo=+15;
+            
+            left=true;
             xSpeed = -10;  
             //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
             analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_left);
@@ -261,6 +303,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     } else if (x2 > x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
         //Log.i("touch", "right");
         // move right
+        rigth=true;
         xSpeed = 10;
         //xFondo=-15;
         //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c2);
@@ -285,8 +328,10 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         //setSpriteState(3);
     } else if (x1==x2 && y1==y2){
         //fire();
+    }else{
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
     }
-    }
+    //}
 }
     //
 }
