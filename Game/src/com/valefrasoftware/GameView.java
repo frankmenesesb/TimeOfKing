@@ -118,38 +118,6 @@ public class GameView extends SurfaceView {
        protected void onDraw(Canvas canvas) {
            System.out.println(System.getenv());
            int movimiento;
-//             if (x == getWidth() - bmp.getWidth()) {
-//                    xSpeed = -1;
-//             }
-//             if (x == 0) {
-//                    xSpeed = 5;
-//             }
-           
-//           if(intro==1){
-//               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_1);      
-//             }
-//             if(intro==2){
-//               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran2);   
-//             }
-//             if(intro==3){
-//               bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_3);   
-//             }
-//             if(intro==4){
-//              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_4);    
-//             }
-//             if(intro==5){
-//              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_5);   
-//             }
-//             if(intro==6){
-//              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.tran_6);   
-//             }
-           
-           //caminando abajo
-           
-           
-            //           if(intro>6){
-//             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);    
-//             }
              
              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
              // el if para la imagen inicial
@@ -215,6 +183,7 @@ public class GameView extends SurfaceView {
             contadorLeft=0;
             }
            }
+        }
            
              intro++;
            
@@ -241,7 +210,7 @@ public class GameView extends SurfaceView {
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
 
              
-      }
+      
              
              
              
@@ -266,16 +235,28 @@ public class GameView extends SurfaceView {
             float firsty = event.getHistoricalY(0);
             float lastx = event.getX();
             float lasty = event.getY();
-
+            
             processMovement(firstx, firsty, lastx, lasty);
+            
             pressButon(firstx, firsty, lastx, lasty);
 
-            break;
+            
+            
+            
+        }break;
+        default:{
+            stop=true;
+            
+        }break;
+        
         }
-        }
+        return true;
     } catch (Exception e) {
+    
+        return false;
+   
     }
-    return true;
+    
 }
 
 private void processMovement(float x1, float y1, float x2, float y2) {
@@ -350,6 +331,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     }else if (x1==x2 && y1==y2){
         //fire();
    }else{
+        Log.i("touch", "entro al else del pelotudo de shaitan");
         caminandoArriba=false;
         caminando=false;
         rigth=false;
