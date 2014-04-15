@@ -21,6 +21,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.valefrasoftware.control.Printer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +55,7 @@ public class GameView extends SurfaceView {
        boolean caminandoArriba;
        boolean rigth;
        boolean left;
+       Printer pin;
       
        public GameView(Context context) {
              super(context);
@@ -103,6 +105,7 @@ public class GameView extends SurfaceView {
              botonB=BitmapFactory.decodeResource(getResources(), R.drawable.boton_b);
              fondo = BitmapFactory.decodeResource(getResources(), R.drawable.tierra);
              arbolito = BitmapFactory.decodeResource(getResources(), R.drawable.arbolillo);
+             
              
               
        }
