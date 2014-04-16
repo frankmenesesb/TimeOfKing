@@ -119,10 +119,12 @@ public class GameView extends SurfaceView {
            System.out.println(System.getenv());
            int movimiento;
              
-             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
+             
              // el if para la imagen inicial
         
       if(!stop){
+          
+          bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
            if(caminando){
             
             contador++;
@@ -331,7 +333,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     }else if (x1==x2 && y1==y2){
         //fire();
    }else{
-        Log.i("touch", "entro al else del pelotudo de shaitan");
+        
         caminandoArriba=false;
         caminando=false;
         rigth=false;
