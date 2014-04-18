@@ -37,8 +37,8 @@ public class GameView extends SurfaceView {
        Button button1;
        private SurfaceHolder holder;
        private GameLoopThread gameLoopThread;
-       private int x = 100;
-       private int y=200;
+       private int x = getWidth()/2;
+       private int y= getHeight()/2;
        private int xSpeed = 1;
        private int ySpeed = 1;
        private long lastClick;
@@ -92,14 +92,6 @@ public class GameView extends SurfaceView {
                     
              });
              
-             
-             
-           
-             
-             
-             
-             //dibujo inicial
-             //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c1);}
              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
@@ -117,7 +109,8 @@ public class GameView extends SurfaceView {
        @Override
        protected void onDraw(Canvas canvas) {
            System.out.println(System.getenv());
-           int movimiento;
+           int movimientox;
+           int movimientoy;
              
              
              // el if para la imagen inicial
@@ -126,7 +119,8 @@ public class GameView extends SurfaceView {
           
           bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
            if(caminando){
-            
+            analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_down);
+            ySpeed=+10;
             contador++;
             
             if (contador==1){
@@ -145,7 +139,8 @@ public class GameView extends SurfaceView {
         //caminando arriba
         
         if(caminandoArriba){
-            
+            analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_up);
+            ySpeed=-10;
             contadorArriba++;
             
             if (contadorArriba==1){
@@ -161,6 +156,8 @@ public class GameView extends SurfaceView {
         
         //caminando derecha
         if(rigth){
+            analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_rigth);
+            xSpeed = 10;
                contadorRigth++;
             if (contadorRigth==1){
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_left);
@@ -176,6 +173,9 @@ public class GameView extends SurfaceView {
         
         //caminando izquierda
         if(left){
+            
+            analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_left);
+            xSpeed = -10;  
             contadorLeft++;
             if (contadorLeft==1){
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.air_side_rigth);
@@ -191,19 +191,20 @@ public class GameView extends SurfaceView {
            
              y=y+ySpeed;
              x = x + xSpeed;
-             movimiento=xFondo-x;
+             movimientox=xFondo-x;
+             movimientoy=yFondo-y;
              canvas.drawColor(Color.GREEN);
-             canvas.drawBitmap(fondo, movimiento , yFondo, null);
-             canvas.drawBitmap(arbolito, movimiento+40 , 20, null);
-             canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
+             canvas.drawBitmap(fondo, movimientox, movimientoy, null);
+             canvas.drawBitmap(arbolito, movimientox+40 , movimientoy+40, null);
+             //canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
+             canvas.drawBitmap(analogo, (getWidth()-getWidth()+100) - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
              
              
+             canvas.drawBitmap(bmp, getWidth()/2 , getHeight()/2, null);
              
-             canvas.drawBitmap(bmp, x , y, null);
              
-             
-             canvas.drawBitmap(botonA, (getWidth()-getWidth()+100) - botonA.getWidth() , getHeight()- botonA.getHeight(), null);
-             canvas.drawBitmap(botonB, botonB.getWidth()+10 , getHeight()- botonB.getHeight(), null);
+             //canvas.drawBitmap(botonA, (getWidth()-getWidth()+100) - botonA.getWidth() , getHeight()- botonA.getHeight(), null);
+             //canvas.drawBitmap(botonB, botonB.getWidth()+10 , getHeight()- botonB.getHeight(), null);
              
              xSpeed = 0;
              ySpeed=0;
@@ -238,8 +239,8 @@ public class GameView extends SurfaceView {
             float lastx = event.getX();
             float lasty = event.getY();
             
-            processMovement(firstx, firsty, lastx, lasty);
             
+            processMovement(firstx, firsty, lastx, lasty);
             pressButon(firstx, firsty, lastx, lasty);
 
             
@@ -269,15 +270,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     int contador=0;
     caminandoArriba = false;
     
-   // if(analogo.getWidth()/2 == x2 && analogo.getHeight()/2 == y2 && analogo.getWidth()/2 == x1 && analogo.getHeight()/2 == y1){
-        
-     //  bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
-      //  caminandoArriba=false;
-       // caminando=false;
-       // rigth=false;
-     //   left=false;
-    //}else{
-    if((x2>getWidth() - analogo.getWidth() && x2<getWidth()) && (y2>getHeight()- analogo.getHeight()) && y2<getHeight()){
+    if((x2>(getWidth()-getWidth()+100) - analogo.getWidth() && x2<analogo.getWidth()+80) || (y2>getHeight()- analogo.getHeight()) && y2<getHeight()/2){
     ///
      if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
         //Log.i("touch", "left");
@@ -289,9 +282,9 @@ private void processMovement(float x1, float y1, float x2, float y2) {
             caminando=false;
             rigth=false;
             left=true;
-            xSpeed = -10;  
+            
             //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c3);
-            analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_left);
+            
             
             
     } else if (x2 > x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
@@ -302,10 +295,10 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         rigth=true;
         left=false;
         
-        xSpeed = 10;
+        
         //xFondo=-15;
         //bmp = BitmapFactory.decodeResource(getResources(), R.drawable.c2);
-        analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_rigth);
+        
         //setSpriteState(2);
     } else if (y2 > y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "down");
@@ -316,8 +309,8 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         rigth=false;
         left=false;
         
-        analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_down);
-        ySpeed=+10;
+        
+        
         //yFondo=-5;
     } else if (y2 < y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
         //Log.i("touch", "up");
@@ -326,8 +319,8 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         rigth=false;
         left=false;
         // move up
-        analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_up);
-        ySpeed=-10;
+        
+        
         //yFondo=+5;
         //setSpriteState(3);
     }else if (x1==x2 && y1==y2){
@@ -387,9 +380,5 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     
     
 }
-
-
-
-
 
 }
