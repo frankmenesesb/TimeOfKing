@@ -270,10 +270,13 @@ private void processMovement(float x1, float y1, float x2, float y2) {
     int contador=0;
     caminandoArriba = false;
     
+    //if(fondo.getWidth()-fondo.getWidth()>0){
+    
     if((x2>(getWidth()-getWidth()+100) - analogo.getWidth() && x2<analogo.getWidth()+80) || (y2>getHeight()- analogo.getHeight()) && y2<getHeight()/2){
-    ///
+    
+     ///
      if (x2 < x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
-        //Log.i("touch", "left");
+        Log.i("touch", "left");
         // move Left
         //setSpriteState(1);
         //x =0;
@@ -288,7 +291,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
             
             
     } else if (x2 > x1 && (Math.abs(y2 - y1) < Math.abs(x2 - x1))) {
-        //Log.i("touch", "right");
+        Log.i("touch", "right");
         // move right
         caminandoArriba=false;
         caminando=false;
@@ -301,7 +304,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         
         //setSpriteState(2);
     } else if (y2 > y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
-        //Log.i("touch", "down");
+        Log.i("touch", "down");
         // move down
         //setSpriteState(4);
         caminandoArriba=false;
@@ -313,7 +316,7 @@ private void processMovement(float x1, float y1, float x2, float y2) {
         
         //yFondo=-5;
     } else if (y2 < y1 && (Math.abs(y2 - y1) > Math.abs(x2 - x1))) {
-        //Log.i("touch", "up");
+        Log.i("touch", "up");
         caminandoArriba=true;//
         caminando=false;
         rigth=false;
@@ -337,7 +340,8 @@ private void processMovement(float x1, float y1, float x2, float y2) {
    // }
     }
   // }
-}
+//}
+    }
     //
 }
     
