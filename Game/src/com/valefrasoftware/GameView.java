@@ -58,6 +58,9 @@ public class GameView extends SurfaceView {
        Printer pin;
        int movimientox;
        int movimientoy;
+       ArrayList arbolitos;
+       int xo=20;
+       int yo=20;
       
        public GameView(Context context) {
              super(context);
@@ -93,13 +96,17 @@ public class GameView extends SurfaceView {
                     
              });
              
+             arbolitos = new ArrayList();
+             
              bmp = BitmapFactory.decodeResource(getResources(), R.drawable.inicio);
              analogo=BitmapFactory.decodeResource(getResources(), R.drawable.anologo_1);
              botonA=BitmapFactory.decodeResource(getResources(), R.drawable.boton_a);
              botonB=BitmapFactory.decodeResource(getResources(), R.drawable.boton_b);
              fondo = BitmapFactory.decodeResource(getResources(), R.drawable.tierra);
              arbolito = BitmapFactory.decodeResource(getResources(), R.drawable.arbolillo);
-             
+             for(int q=0; q<20; q++){
+                 arbolitos.add(q, arbolito);
+             }
              
               
        }
@@ -197,6 +204,32 @@ public class GameView extends SurfaceView {
              canvas.drawColor(Color.BLACK);
              canvas.drawBitmap(fondo, movimientox, movimientoy, null);
              canvas.drawBitmap(arbolito, movimientox+40 , movimientoy+40, null);
+             
+//             for(int u=0; u<2; u++){
+//             for(int o=0; o<2; o++){
+//                xo=100*o;
+//                //z=100*u;
+//                //publico=movimiento+n;
+//                 canvas.drawBitmap((Bitmap) arbolitos.get(o), movimientox+xo , movimientoy+40, null);
+//             }
+//             }
+             
+             for(int g=0; g<6; g++){
+             for(int h=0; h<20; h++){
+                 xo=40*h;
+                 yo=40*g;
+             canvas.drawBitmap((Bitmap) arbolitos.get(h), movimientox+xo , movimientoy+yo, null);
+             }
+             }
+             
+             
+             for(int g=0; g<17; g++){
+             for(int h=0; h<4; h++){
+                 xo=40*h;
+                 yo=40*g;
+             canvas.drawBitmap((Bitmap) arbolitos.get(h), movimientox+xo , movimientoy+yo, null);
+             }
+             }
              //canvas.drawBitmap(analogo, getWidth() - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
              canvas.drawBitmap(analogo, (getWidth()-getWidth()+100) - analogo.getWidth() , getHeight()- analogo.getHeight(), null);
              
